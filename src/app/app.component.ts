@@ -1,3 +1,4 @@
+import { ThemeService } from './theme/theme.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dark-light-angular-project';
+
+  constructor(private themeService: ThemeService) { }
+
+  toggle() {
+    const active = this.themeService.getActiveTheme();
+    if (active.name === 'light') {
+      this.themeService.setTheme('dark');
+    } else {
+      this.themeService.setTheme('light');
+    }
+  }
 }
